@@ -92,9 +92,9 @@ function initHeroScene() {
   toothShape.bezierCurveTo(0.6, -2.0, 0.9, -3.5, 1.2, -5.0);
   // Right root tip curve
   toothShape.bezierCurveTo(1.4, -5.8, 2.0, -5.8, 2.2, -5.2);
-  // Right root outer curve
-  toothShape.bezierCurveTo(2.8, -2.5, 3.5, -1.0, 3.2, -1.5);
-  // Right neck narrowing
+  // Right root outer curve (Symmetric to left root outer)
+  toothShape.bezierCurveTo(2.5, -4.0, 2.8, -2.5, 3.2, -1.5);
+  // Right neck narrowing (Symmetric to left neck)
   toothShape.bezierCurveTo(3.5, -1.0, 4.2, -0.2, 4.5, 1.0);
   // Right side of crown
   toothShape.bezierCurveTo(4.8, 2.5, 4.5, 3.8, 3.5, 4.0);
@@ -121,8 +121,8 @@ function initHeroScene() {
   }
 
   const morphSphere = new THREE.Mesh(toothGeo, glassMaterial);
-  // Scale down the mesh to fit perfectly inside the outer ring
-  morphSphere.scale.set(0.18, 0.18, 0.18);
+  // Scale down the mesh to fit perfectly inside the outer ring (approx 57% of diameter)
+  morphSphere.scale.set(0.15, 0.15, 0.15);
   scene.add(morphSphere);
 
   // Outer Ring Gyroscope (Silver & polished chrome)
@@ -185,9 +185,9 @@ function initHeroScene() {
     morphSphere.rotation.x = THREE.MathUtils.lerp(morphSphere.rotation.x, mouseY * 0.4, 0.05);
     morphSphere.rotation.y = THREE.MathUtils.lerp(morphSphere.rotation.y, mouseX * 0.4, 0.05);
     
-    // Position float offset based on mouse
-    morphSphere.position.x = THREE.MathUtils.lerp(morphSphere.position.x, mouseX * 0.12, 0.05);
-    morphSphere.position.y = THREE.MathUtils.lerp(morphSphere.position.y, mouseY * 0.12, 0.05);
+    // Position float offset based on mouse (with +0.4 Y offset to visually center the tooth crown/roots)
+    morphSphere.position.x = THREE.MathUtils.lerp(morphSphere.position.x, 0.0 + mouseX * 0.12, 0.05);
+    morphSphere.position.y = THREE.MathUtils.lerp(morphSphere.position.y, 0.4 + mouseY * 0.12, 0.05);
 
     renderer.render(scene, camera);
   }
