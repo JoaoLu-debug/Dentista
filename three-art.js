@@ -15,6 +15,10 @@ window.addEventListener('mousemove', (e) => {
   mouseX = (e.clientX / window.innerWidth) * 2 - 1;
   mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
 });
+window.addEventListener('mouseleave', () => {
+  mouseX = 0;
+  mouseY = 0;
+});
 
 /**
  * 1. HERO SCENE: Morphing Glass Sphere + Gyroscopic Nested Rings
@@ -118,7 +122,7 @@ function initHeroScene() {
 
   const morphSphere = new THREE.Mesh(toothGeo, glassMaterial);
   // Scale down the mesh to fit perfectly inside the outer ring
-  morphSphere.scale.set(0.23, 0.23, 0.23);
+  morphSphere.scale.set(0.18, 0.18, 0.18);
   scene.add(morphSphere);
 
   // Outer Ring Gyroscope (Silver & polished chrome)
@@ -169,18 +173,21 @@ function initHeroScene() {
     pos.needsUpdate = true;
     toothGeo.computeVertexNormals();
 
-    // 2. Slow, comforting rotations
-    morphSphere.rotation.y += 0.12 * delta;
-    morphSphere.rotation.x += 0.04 * delta;
+    // 2. Slow, comforting rotations (removed auto rotation on tooth, spin the outer ring like a wheel)
+    ring1.rotation.z += 0.08 * delta;
 
-    ring1.rotation.z += 0.15 * delta;
-
-    // 3. Mouse Parallax (Interactive float)
-    ringGroup.rotation.x = THREE.MathUtils.lerp(ringGroup.rotation.x, mouseY * 0.3, 0.05);
-    ringGroup.rotation.y = THREE.MathUtils.lerp(ringGroup.rotation.y, mouseX * 0.3, 0.05);
+    // 3. Mouse Parallax (Interactive float and tilt)
+    // Rotate ring Group based on mouse
+    ringGroup.rotation.x = THREE.MathUtils.lerp(ringGroup.rotation.x, mouseY * 0.2, 0.05);
+    ringGroup.rotation.y = THREE.MathUtils.lerp(ringGroup.rotation.y, mouseX * 0.2, 0.05);
     
-    morphSphere.position.x = THREE.MathUtils.lerp(morphSphere.position.x, mouseX * 0.2, 0.05);
-    morphSphere.position.y = THREE.MathUtils.lerp(morphSphere.position.y, mouseY * 0.2, 0.05);
+    // Rotate/tilt tooth based on mouse position (maximum 23 degrees tilt, no random auto-rotation)
+    morphSphere.rotation.x = THREE.MathUtils.lerp(morphSphere.rotation.x, mouseY * 0.4, 0.05);
+    morphSphere.rotation.y = THREE.MathUtils.lerp(morphSphere.rotation.y, mouseX * 0.4, 0.05);
+    
+    // Position float offset based on mouse
+    morphSphere.position.x = THREE.MathUtils.lerp(morphSphere.position.x, mouseX * 0.12, 0.05);
+    morphSphere.position.y = THREE.MathUtils.lerp(morphSphere.position.y, mouseY * 0.12, 0.05);
 
     renderer.render(scene, camera);
   }
