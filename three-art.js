@@ -72,17 +72,46 @@ function initHeroScene() {
     side: THREE.DoubleSide
   });
 
-  // Morphing Sphere Geometry
-  const sphereGeo = new THREE.SphereGeometry(1.05, 48, 48);
+  // Tooth 2D Silhouette Shape
+  const toothShape = new THREE.Shape();
+  toothShape.moveTo(-0.35, 0.7);
+  // Left cusp
+  toothShape.bezierCurveTo(-0.6, 0.8, -0.7, 0.5, -0.6, 0.25);
+  // Left side of crown
+  toothShape.bezierCurveTo(-0.65, 0.0, -0.5, -0.35, -0.35, -0.5);
+  // Left root
+  toothShape.bezierCurveTo(-0.35, -0.85, -0.25, -1.1, -0.12, -1.15);
+  toothShape.bezierCurveTo(-0.08, -1.1, -0.08, -0.6, 0, -0.5); // split between roots
+  toothShape.bezierCurveTo(0.08, -0.6, 0.08, -1.1, 0.12, -1.15);
+  // Right root
+  toothShape.bezierCurveTo(0.25, -1.1, 0.35, -0.85, 0.35, -0.5);
+  // Right side of crown
+  toothShape.bezierCurveTo(0.5, -0.35, 0.65, 0.0, 0.6, 0.25);
+  // Right cusp
+  toothShape.bezierCurveTo(0.7, 0.5, 0.6, 0.8, 0.35, 0.7);
+  // Top dip between cusps
+  toothShape.bezierCurveTo(0.18, 0.65, -0.18, 0.65, -0.35, 0.7);
+
+  const extrudeSettings = {
+    depth: 0.1,
+    bevelEnabled: true,
+    bevelSegments: 8,
+    steps: 2,
+    bevelSize: 0.18,
+    bevelThickness: 0.18
+  };
+
+  const toothGeo = new THREE.ExtrudeGeometry(toothShape, extrudeSettings);
+  toothGeo.center();
   
   // Store original positions for deformation math
   const originalPositions = [];
-  const posAttr = sphereGeo.attributes.position;
+  const posAttr = toothGeo.attributes.position;
   for (let i = 0; i < posAttr.count; i++) {
     originalPositions.push(new THREE.Vector3(posAttr.getX(i), posAttr.getY(i), posAttr.getZ(i)));
   }
 
-  const morphSphere = new THREE.Mesh(sphereGeo, glassMaterial);
+  const morphSphere = new THREE.Mesh(toothGeo, glassMaterial);
   scene.add(morphSphere);
 
   // Nested Ring Gyroscope (Softer materials - silver & frosted glass)
@@ -141,17 +170,17 @@ function initHeroScene() {
 
     const timeSec = time * 0.001;
 
-    // 1. Deform Sphere (Organic Morphing)
-    const pos = sphereGeo.attributes.position;
+    // 1. Deform Tooth (Organic Morphing)
+    const pos = toothGeo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
       const orig = originalPositions[i];
-      const wave = Math.sin(orig.x * 2.5 + timeSec) * Math.cos(orig.y * 2.5 + timeSec) * 0.12;
+      const wave = Math.sin(orig.x * 2.0 + timeSec) * Math.cos(orig.y * 2.0 + timeSec) * 0.05;
       const offset = orig.clone().normalize().multiplyScalar(wave);
       const targetPos = orig.clone().add(offset);
       pos.setXYZ(i, targetPos.x, targetPos.y, targetPos.z);
     }
     pos.needsUpdate = true;
-    sphereGeo.computeVertexNormals();
+    toothGeo.computeVertexNormals();
 
     // 2. Slow, comforting rotations
     morphSphere.rotation.y += 0.12 * delta;
