@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DENTIS LAB | Odontologia de Precisão e Estética</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Syne (headlines) and Plus Jakarta Sans (body, UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#fafafa] text-[#0d0d0d] font-sans antialiased overflow-x-hidden relative selection:bg-neutral-900 selection:text-white">
+
+  <!-- SVG Liquid Glass Filters (For premium glassmorphic refraction) -->
+  <svg aria-hidden="true" class="hidden" focusable="false" style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <filter color-interpolation-filters="sRGB" height="200%" id="liquid-glass-filter" width="200%" x="-50%" y="-50%">
+        <feTurbulence baseFrequency="0.03 0.03" numOctaves="1" result="turbulence" seed="2" type="fractalNoise" />
+        <feGaussianBlur in="turbulence" result="blurredNoise" stdDeviation="1.5" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" result="displaced" scale="15" xChannelSelector="R" yChannelSelector="B" />
+        <feGaussianBlur in="displaced" result="finalBlur" stdDeviation="2" />
+        <feComposite in="finalBlur" in2="finalBlur" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Left & Right Vertical Viewport Labels (Swiss Editorial Trademark) -->
+  <div class="fixed left-4 top-1/2 -translate-y-1/2 select-none pointer-events-none hidden xl:flex flex-col items-center gap-12 z-40 animate-fade-in">
+    <span class="text-[9px] tracking-[0.4em] uppercase font-bold text-neutral-400 rotate-90 origin-center whitespace-nowrap">DENTIS LAB — SWISS DENTAL STANDARD</span>
+  </div>
+  <div class="fixed right-4 top-1/2 -translate-y-1/2 select-none pointer-events-none hidden xl:flex flex-col items-center gap-12 z-40 animate-fade-in">
+    <span class="text-[9px] tracking-[0.4em] uppercase font-bold text-neutral-400 -rotate-90 origin-center whitespace-nowrap">EST. 2026 — ORAL INTEGRITY</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 w-full z-40 border-b border-neutral-100 bg-[#fafafa]/80 backdrop-blur-md transition-all duration-300">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-6 rounded-full bg-neutral-900 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+          <span class="text-[8px] font-bold text-white tracking-wider">DL</span>
+        </div>
+        <span class="text-xs font-extrabold uppercase tracking-[0.3em] text-neutral-900">DENTIS LAB</span>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#" class="text-[11px] font-semibold uppercase tracking-widest text-neutral-900 hover:text-neutral-500 transition-colors">Início</a>
+        <a href="#servicos" class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-neutral-900 transition-colors">Serviços</a>
+        <a href="#dashboard" class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-neutral-900 transition-colors">Dashboard</a>
+        <a href="#horarios" class="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 hover:text-neutral-900 transition-colors">Horários</a>
+      </nav>
+
+      <!-- Action -->
+      <div class="flex items-center gap-6">
+        <button id="open-drawer-btn" class="px-5 py-2.5 rounded-full bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-neutral-800 active:scale-95 transition-all duration-300">
+          Agendar Consulta
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="max-w-[1400px] mx-auto px-6 md:px-12 relative overflow-hidden">
+
+    <!-- Hero Section -->
+    <section class="min-h-[calc(100vh-80px)] py-12 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-neutral-100 relative">
+      <!-- Left side: Editorial Typography -->
+      <div class="lg:col-span-8 flex flex-col items-start z-10">
+        <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-neutral-400 mb-6 flex items-center gap-2 animate-fade-in">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#30d158] inline-block"></span> 
+          DIAGNÓSTICO DE PRECISÃO & ESTÉTICA
+        </span>
+        
+        <h1 class="font-headline text-5xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight text-neutral-900 leading-[0.9] mb-8 animate-reveal">
+          SUA SAÚDE<br>ORAL É NOSSA<br><span class="text-neutral-400">PRIORIDADE.</span>
+        </h1>
+
+        <p class="max-w-lg text-[13px] md:text-sm text-neutral-500 leading-relaxed font-light mb-10 tracking-wide animate-fade-in delay-200">
+          Proporcionamos odontologia biomimética e reabilitações estéticas com rigor clínico e precisão suíça, elevando o bem-estar e a longevidade funcional do seu sorriso.
+        </p>
+
+        <!-- CTAs & Badge Row -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-8 w-full animate-fade-in delay-300">
+          <button id="cta-hero-booking" class="px-8 py-4 rounded-full bg-neutral-900 text-white text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all duration-300 shadow-sm">
+            Iniciar Tratamento
+          </button>
+          
+          <!-- Circular Badge with rotating text -->
+          <div id="cta-hero-badge" class="flex items-center gap-4 relative group cursor-pointer">
+            <div class="w-16 h-16 rounded-full border border-neutral-200 flex items-center justify-center relative overflow-hidden transition-transform duration-500 group-hover:rotate-12">
+              <!-- Circular text container -->
+              <svg class="w-14 h-14 absolute animate-spin-slow" viewBox="0 0 100 100">
+                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
+                <text class="text-[8.5px] uppercase tracking-[0.18em] fill-neutral-600 font-bold">
+                  <textPath href="#circlePath">AGENDAR CONSULTA • AGENDAR CONSULTA •</textPath>
+                </text>
+              </svg>
+              <!-- Center Arrow -->
+              <svg class="w-4 h-4 text-neutral-900 translate-y-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+            <span class="text-[10px] font-bold tracking-widest text-neutral-500 group-hover:text-neutral-900 transition-colors uppercase">Consulte Nossos Especialistas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: WebGL Interactive 3D Canvas & Stats -->
+      <div class="lg:col-span-4 flex flex-col justify-between h-full relative min-h-[350px] lg:min-h-[500px]">
+        <!-- 3D Organic Canvas Slot -->
+        <div id="hero-3d-container" class="absolute inset-0 z-0 pointer-events-auto cursor-grab active:cursor-grabbing">
+          <!-- Canvas injected here -->
+        </div>
+
+        <!-- Float Info box at bottom -->
+        <div class="relative mt-auto z-10 glass-panel p-6 max-w-[280px] self-end hidden sm:block border border-neutral-100 rounded-2xl bg-white/70 backdrop-blur-md shadow-sm transition-all duration-500">
+          <div class="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center mb-4">
+            <span class="text-[10px] font-bold text-neutral-700">12</span>
+          </div>
+          <p class="text-[11px] text-neutral-500 leading-relaxed font-light tracking-wide">
+            Há mais de 12 anos, cuidamos de mais de <span class="font-bold text-neutral-900">8.400 pacientes</span> com precisão microscópica e integridade biológica absoluta.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Section 2: Three Principles -->
+    <section class="py-24 border-b border-neutral-100">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 grid-dimming-container">
+        
+        <!-- Column 1 -->
+        <div class="flex flex-col items-start pr-0 md:pr-8 border-t border-neutral-200 pt-8 transition-all duration-500 hover:opacity-100 hover:scale-[1.01] grid-col-card">
+          <span class="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest border border-neutral-300 rounded-full text-neutral-400 mb-6 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">01</span>
+          <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-900 mb-4">DIAGNÓSTICO INDIVIDUAL</h3>
+          <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+            Uma avaliação clínica singular por meio de escaneamento intraoral 3D e exames de microscopia óptica, detectando com precisão as necessidades reais do paciente.
+          </p>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="flex flex-col items-start px-0 md:px-8 border-t border-neutral-200 pt-8 transition-all duration-500 hover:opacity-100 hover:scale-[1.01] grid-col-card">
+          <span class="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest border border-neutral-300 rounded-full text-neutral-400 mb-6 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">02</span>
+          <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-900 mb-4">INTEGRIDADE BIOMIMÉTICA</h3>
+          <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+            Utilizamos materiais restauradores avançados que emulam a elasticidade e a resistência física dos dentes naturais, preservando ao máximo a estrutura dental sã.
+          </p>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="flex flex-col items-start pl-0 md:pl-8 border-t border-neutral-200 pt-8 transition-all duration-500 hover:opacity-100 hover:scale-[1.01] grid-col-card">
+          <span class="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest border border-neutral-300 rounded-full text-neutral-400 mb-6 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">03</span>
+          <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-900 mb-4">RESULTADOS DURADOUROS</h3>
+          <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+            Protocolo de acompanhamento preventivo contínuo e orientações de bio-higiene personalizadas, blindando a estética e a saúde geral no longo prazo.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Section 3: Editorial Statement -->
+    <section class="py-24 border-b border-neutral-100 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text Statement -->
+        <div class="lg:col-span-8 z-10">
+          <h2 class="font-headline text-3xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-[1.05] mb-12 scroll-reveal-text">
+            O SORRISO SAUDÁVEL É A FUNDAÇÃO DE UMA VIDA PLENA. UM ESTADO DE EQUILÍBRIO ONDE A CONFIANÇA E O BEM-ESTAR SE UNEM PARA QUE VOCÊ FOQUE NO QUE REALMENTE IMPORTA.
+          </h2>
+        </div>
+
+        <!-- Layered Blades 3D Canvas -->
+        <div class="lg:col-span-4 h-[350px] lg:h-[450px] relative w-full pointer-events-auto">
+          <div id="statement-3d-container" class="absolute inset-0 z-0 cursor-grab active:cursor-grabbing">
+            <!-- Three.js Canvas injected here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Sub-paragraphs underneath -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 border-t border-neutral-100 pt-12">
+        <div>
+          <p class="text-[13px] text-neutral-500 leading-relaxed font-light tracking-wide font-light-para">
+            A odontologia moderna não se limita a tratar sintomas. Nós olhamos para a harmonia funcional e estética da face como um sistema integrado. Cada intervenção é planejada com o uso de tecnologias de ponta, assegurando procedimentos minimamente invasivos e confortáveis.
+          </p>
+        </div>
+        <div>
+          <p class="text-[13px] text-neutral-500 leading-relaxed font-light tracking-wide font-light-para">
+            Com nosso protocolo clínico avançado, reduzimos o tempo de tratamento e maximizamos a previsibilidade dos resultados. A saúde sistêmica começa pela boca, e a preservação de cada detalhe do seu sorriso é o nosso maior compromisso diário.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Section 4: Health Dashboard & Portrait -->
+    <section id="dashboard" class="py-24 border-b border-neutral-100">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Editorial Monochrome Photograph -->
+        <div class="lg:col-span-5 relative group overflow-hidden rounded-2xl border border-neutral-200">
+          <div class="absolute inset-0 bg-neutral-900/10 mix-blend-color group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
+          <img src="editorial_portrait.jpg" alt="Retrato Editorial Paciente" class="w-full aspect-[4/5] object-cover grayscale brightness-95 scale-100 group-hover:scale-[1.03] transition-transform duration-700">
+        </div>
+
+        <!-- Right: Modern Patient Health Analytics Interface -->
+        <div class="lg:col-span-7 flex flex-col justify-center">
+          <div class="max-w-xl">
+            <span class="text-[9px] font-extrabold uppercase tracking-[0.4em] text-neutral-400 mb-4 block">MONITORAMENTO AVANÇADO</span>
+            <h2 class="font-headline text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-neutral-900 mb-8">
+              ACOMPANHE SUAS MÉTRICAS DE SAÚDE
+            </h2>
+            
+            <p class="text-[13px] text-neutral-500 leading-relaxed font-light tracking-wide mb-10">
+              Disponibilizamos aos nossos pacientes uma central de monitoramento onde é possível avaliar a evolução do esmalte dental, estabilidade gengival e índices de controle biológico.
+            </p>
+
+            <!-- Dashboard Mock Cards (Swiss Clean, No Excessive Shadow) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+              
+              <!-- Card 1 -->
+              <div class="glass-panel p-6 border border-neutral-100 rounded-2xl bg-white/40 flex flex-col justify-between h-40">
+                <div class="flex justify-between items-start">
+                  <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400">Densidade de Esmalte</span>
+                  <span class="text-[9px] font-extrabold text-[#30d158] uppercase tracking-wider bg-[#30d158]/10 px-2 py-0.5 rounded-full">Excelente</span>
+                </div>
+                <div class="my-3 flex items-baseline gap-2">
+                  <span class="text-3xl font-light tracking-tighter text-neutral-900">98%</span>
+                  <span class="text-[10px] text-neutral-400">Remineralização</span>
+                </div>
+                <!-- Mini Minimal SVG Graph -->
+                <svg class="w-full h-8 text-neutral-900" viewBox="0 0 100 20" fill="none">
+                  <path d="M0 15 Q25 12, 50 8 T100 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                  <path d="M0 15 Q25 12, 50 8 T100 3 L100 20 L0 20 Z" fill="currentColor" fill-opacity="0.03"></path>
+                </svg>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="glass-panel p-6 border border-neutral-100 rounded-2xl bg-white/40 flex flex-col justify-between h-40">
+                <div class="flex justify-between items-start">
+                  <span class="text-[9px] font-bold uppercase tracking-widest text-neutral-400">Saúde Gengival</span>
+                  <span class="text-[9px] font-extrabold text-[#30d158] uppercase tracking-wider bg-[#30d158]/10 px-2 py-0.5 rounded-full">Estável</span>
+                </div>
+                <div class="my-3 flex items-baseline gap-2">
+                  <span class="text-3xl font-light tracking-tighter text-neutral-900">1.8mm</span>
+                  <span class="text-[10px] text-neutral-400">Prof. Sulco</span>
+                </div>
+                <!-- Mini Minimal SVG Graph (Stable line) -->
+                <svg class="w-full h-8 text-neutral-900" viewBox="0 0 100 20" fill="none">
+                  <path d="M0 10 Q20 8, 40 12 T80 9 T100 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                  <path d="M0 10 Q20 8, 40 12 T80 9 T100 10 L100 20 L0 20 Z" fill="currentColor" fill-opacity="0.03"></path>
+                </svg>
+              </div>
+
+            </div>
+
+            <!-- Dashboard CTA Text -->
+            <div class="border-t border-neutral-100 pt-6 flex items-start gap-4">
+              <span class="w-1.5 h-1.5 rounded-full bg-neutral-900 mt-1.5 shrink-0"></span>
+              <p class="text-[11px] uppercase tracking-wider text-neutral-500 font-bold leading-normal">
+                CONSULTE SEU DIAGNÓSTICO DIGITAL DIRETAMENTE EM NOSSA PLATAFORMA APÓS SUA PRIMEIRA AVALIAÇÃO MICROSCÓPICA.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Section 5: Services (As requested by user) -->
+    <section id="servicos" class="py-24 border-b border-neutral-100">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div class="lg:col-span-6">
+          <span class="text-[9px] font-extrabold uppercase tracking-[0.4em] text-neutral-400 mb-4 block">SERVIÇOS DE EXCELÊNCIA</span>
+          <h2 class="font-headline text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-neutral-900 leading-[0.9]">
+            ESPECIALIDADES DO CONSULTÓRIO
+          </h2>
+        </div>
+        <div class="lg:col-span-6 flex items-end">
+          <p class="text-[13px] text-neutral-500 leading-relaxed font-light tracking-wide max-w-md lg:ml-auto">
+            Abordamos a odontologia sob a ótica da alta-tecnologia de materiais e preservação biológica, proporcionando procedimentos focados em excelência estética e conforto.
+          </p>
+        </div>
+      </div>
+
+      <!-- Services List (Rigid Swiss Grid & Rows) -->
+      <div class="border-t border-neutral-200">
+        
+        <!-- Row 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-neutral-200 items-start group hover:bg-neutral-50/50 px-4 -mx-4 transition-all duration-300 service-row">
+          <div class="lg:col-span-1">
+            <span class="text-xs font-bold tracking-widest text-neutral-400 uppercase">01 /</span>
+          </div>
+          <div class="lg:col-span-4">
+            <h4 class="text-base font-bold tracking-wider text-neutral-900 uppercase">Estética & Lentes de Porcelana</h4>
+          </div>
+          <div class="lg:col-span-5">
+            <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+              Lentes de contato ultrafinas e facetas biomiméticas desenhadas digitalmente com microscópio clínico. Restabelecemos a luminosidade natural e o design do sorriso com mínima invasão.
+            </p>
+          </div>
+          <div class="lg:col-span-2 lg:text-right">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-widest text-neutral-400 border border-neutral-200 rounded-full px-4 py-1.5 bg-white group-hover:border-neutral-900 group-hover:text-neutral-900 transition-colors">Avançado</span>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-neutral-200 items-start group hover:bg-neutral-50/50 px-4 -mx-4 transition-all duration-300 service-row">
+          <div class="lg:col-span-1">
+            <span class="text-xs font-bold tracking-widest text-neutral-400 uppercase">02 /</span>
+          </div>
+          <div class="lg:col-span-4">
+            <h4 class="text-base font-bold tracking-wider text-neutral-900 uppercase">Reabilitação Oral & Implantes</h4>
+          </div>
+          <div class="lg:col-span-5">
+            <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+              Implantes em cerâmica (zircônia) ou titânio instalados por cirurgia guiada em 3D. Soluções protéticas unitárias ou totais que reproduzem fielmente as forças mastigatórias biológicas.
+            </p>
+          </div>
+          <div class="lg:col-span-2 lg:text-right">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-widest text-neutral-400 border border-neutral-200 rounded-full px-4 py-1.5 bg-white group-hover:border-neutral-900 group-hover:text-neutral-900 transition-colors">Cirurgia 3D</span>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-neutral-200 items-start group hover:bg-neutral-50/50 px-4 -mx-4 transition-all duration-300 service-row">
+          <div class="lg:col-span-1">
+            <span class="text-xs font-bold tracking-widest text-neutral-400 uppercase">03 /</span>
+          </div>
+          <div class="lg:col-span-4">
+            <h4 class="text-base font-bold tracking-wider text-neutral-900 uppercase">Ortodontia Invisível</h4>
+          </div>
+          <div class="lg:col-span-5">
+            <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+              Alinhamento dental planejado digitalmente por softwares de simulação preditiva. Tratamentos ágeis, discretos e altamente precisos com alinhadores transparentes.
+            </p>
+          </div>
+          <div class="lg:col-span-2 lg:text-right">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-widest text-neutral-400 border border-neutral-200 rounded-full px-4 py-1.5 bg-white group-hover:border-neutral-900 group-hover:text-neutral-900 transition-colors">Alinhadores</span>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-neutral-200 items-start group hover:bg-neutral-50/50 px-4 -mx-4 transition-all duration-300 service-row">
+          <div class="lg:col-span-1">
+            <span class="text-xs font-bold tracking-widest text-neutral-400 uppercase">04 /</span>
+          </div>
+          <div class="lg:col-span-4">
+            <h4 class="text-base font-bold tracking-wider text-neutral-900 uppercase">Microscopia Preventiva & Endo</h4>
+          </div>
+          <div class="lg:col-span-5">
+            <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+              Diagnósticos minuciosos sob ampliação microscópica de 20x. Tratamento de canal (endodontia) realizado em sessão única e limpezas profundas por ultrassom piezoelétrico.
+            </p>
+          </div>
+          <div class="lg:col-span-2 lg:text-right">
+            <span class="inline-block text-[10px] font-bold uppercase tracking-widest text-neutral-400 border border-neutral-200 rounded-full px-4 py-1.5 bg-white group-hover:border-neutral-900 group-hover:text-neutral-900 transition-colors">Microscópio</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Section 6: Philosophy & Opening Hours (As requested by user) -->
+    <section id="horarios" class="py-24 border-b border-neutral-100 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Timetable and Info -->
+        <div class="lg:col-span-6 z-10">
+          <span class="text-[9px] font-extrabold uppercase tracking-[0.4em] text-neutral-400 mb-4 block">DISPONIBILIDADE CLÍNICA</span>
+          <h2 class="font-headline text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-neutral-900 mb-10 leading-[0.9]">
+            HORÁRIOS DE ATENDIMENTO
+          </h2>
+
+          <div class="max-w-md border-t border-neutral-200">
+            <!-- Timetable Row 1 -->
+            <div class="flex justify-between py-4 border-b border-neutral-100">
+              <span class="text-[12px] uppercase tracking-wider text-neutral-600 font-semibold">Segunda a Sexta-feira</span>
+              <span class="text-[12.5px] text-neutral-900 font-bold">08:00 – 20:00</span>
+            </div>
+            <!-- Timetable Row 2 -->
+            <div class="flex justify-between py-4 border-b border-neutral-100">
+              <span class="text-[12px] uppercase tracking-wider text-neutral-600 font-semibold">Sábado</span>
+              <span class="text-[12.5px] text-neutral-900 font-bold">08:00 – 14:00</span>
+            </div>
+            <!-- Timetable Row 3 -->
+            <div class="flex justify-between py-4 border-b border-neutral-100">
+              <span class="text-[12px] uppercase tracking-wider text-neutral-400 font-semibold">Domingo e Feriados</span>
+              <span class="text-[12.5px] text-neutral-400 font-semibold">Fechado</span>
+            </div>
+          </div>
+
+          <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide mt-8 max-w-sm">
+            Localizados na região central de fácil acesso, dispomos de estacionamento privativo e recepção climatizada dedicada à sua total privacidade.
+          </p>
+        </div>
+
+        <!-- Right: Asymmetric Philosophy Statement & 3D Tubular composition -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[350px]">
+          <!-- Tubular Canvas -->
+          <div id="philosophy-3d-container" class="absolute inset-0 z-0 cursor-grab active:cursor-grabbing">
+            <!-- Three.js Canvas injected here -->
+          </div>
+          
+          <!-- Large Overlaid Typographic Statement (Philosophy) -->
+          <div class="relative z-10 text-center select-none pointer-events-none px-6">
+            <span class="text-[11px] font-extrabold uppercase tracking-[0.5em] text-neutral-400 mb-4 block">FILOSOFIA</span>
+            <span class="font-headline text-5xl md:text-6xl font-black uppercase tracking-tighter text-neutral-900/10 leading-none">
+              EQUILÍBRIO • HARMONIA • RIGOR
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Final CTA Section -->
+    <section class="py-24 text-center border-b border-neutral-100 relative">
+      <div class="max-w-3xl mx-auto flex flex-col items-center relative z-10">
+        <span class="text-[9px] font-extrabold uppercase tracking-[0.4em] text-neutral-400 mb-6 block">AGENDAMENTO EXCLUSIVO</span>
+        
+        <h2 class="font-headline text-5xl md:text-7xl font-black uppercase tracking-tight text-neutral-900 leading-[0.95] mb-12 scroll-reveal-text">
+          PRONTO PARA<br>TRANSFORMAR SUA<br><span class="text-neutral-400">SAÚDE ORAL?</span>
+        </h2>
+
+        <button id="cta-final-booking" class="px-10 py-5 rounded-full bg-neutral-900 text-white text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all duration-300 shadow-sm">
+          Agendar Minha Primeira Consulta
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-neutral-900 text-neutral-400 text-xs py-16">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-neutral-800 pb-12 mb-12">
+      <!-- Logo and Description -->
+      <div class="md:col-span-2 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-5 rounded-full bg-white flex items-center justify-center">
+              <span class="text-[6.5px] font-bold text-neutral-950 tracking-wider">DL</span>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-white">DENTIS LAB</span>
+          </div>
+          <p class="max-w-xs text-[11px] leading-relaxed text-neutral-400 font-light tracking-wide">
+            Excelência em saúde oral guiada por diagnóstico de precisão microscópica e tratamentos biomiméticos de alto padrão.
+          </p>
+        </div>
+        <p class="text-[10px] text-neutral-500 mt-8">
+          &copy; 2026 DENTIS LAB. Todos os direitos reservados.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h5 class="text-white text-[10px] font-bold uppercase tracking-widest mb-6">Navegação</h5>
+        <ul class="space-y-4 text-[11px]">
+          <li><a href="#" class="hover:text-white transition-colors">Início</a></li>
+          <li><a href="#servicos" class="hover:text-white transition-colors">Especialidades</a></li>
+          <li><a href="#dashboard" class="hover:text-white transition-colors">Métricas de Saúde</a></li>
+          <li><a href="#horarios" class="hover:text-white transition-colors">Horários de Atendimento</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact details -->
+      <div>
+        <h5 class="text-white text-[10px] font-bold uppercase tracking-widest mb-6">Contato</h5>
+        <ul class="space-y-4 text-[11px] leading-relaxed">
+          <li>Av. Paulista, 2000 – Conj. 801<br>Bela Vista, São Paulo – SP</li>
+          <li>Tel: (11) 3214-5588</li>
+          <li>contato@dentislab.com.br</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Small Disclaimers -->
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-neutral-500">
+      <span>RT: Dr. Marcus Weber — CRO-SP 123456</span>
+      <span>Termos de Uso & Política de Privacidade</span>
+    </div>
+  </footer>
+
+
+  <!-- Slide-out Booking Drawer (Premium Glassmorphic Refractive Sidebar) -->
+  <div id="booking-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 invisible transition-all duration-500">
+    <!-- Backdrop overlay -->
+    <div id="drawer-backdrop" class="absolute inset-0 bg-neutral-900/10 backdrop-blur-[2px] transition-opacity duration-500 ease-out opacity-0 pointer-events-auto"></div>
+    
+    <!-- Slider panel -->
+    <div id="drawer-panel" class="absolute top-0 right-0 h-full w-full max-w-md bg-white/75 backdrop-blur-2xl border-l border-neutral-200/50 shadow-2xl translate-x-full transition-transform duration-500 ease-out pointer-events-auto flex flex-col">
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-neutral-100 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#30d158]"></span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.35em] text-neutral-700">DENTIS LAB RESERVAS</span>
+        </div>
+        <button id="close-drawer-btn" class="w-8 h-8 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-500 hover:border-neutral-950 hover:text-neutral-950 active:scale-90 transition-all duration-300">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Drawer Content (Form) -->
+      <div class="flex-1 overflow-y-auto p-8">
+        <div id="booking-form-container">
+          <h3 class="font-headline text-3xl font-extrabold uppercase tracking-tight text-neutral-900 mb-6">
+            Solicitar Agendamento
+          </h3>
+          <p class="text-[12px] text-neutral-500 leading-relaxed font-light mb-8">
+            Preencha os dados abaixo com as informações solicitadas. Retornaremos em até 2 horas úteis por WhatsApp ou e-mail para validar seu horário.
+          </p>
+
+          <form id="booking-form" class="space-y-6" onsubmit="event.preventDefault();">
+            <!-- Input 1 -->
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-neutral-600">Nome Completo</label>
+              <input type="text" required placeholder="Ex: Ana Silva" class="w-full bg-white/60 border border-neutral-200 focus:border-neutral-950 rounded-xl px-4 py-3 text-[12.5px] outline-none transition-all duration-300">
+            </div>
+
+            <!-- Input 2 -->
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-neutral-600">E-mail</label>
+              <input type="email" required placeholder="Ex: ana.silva@email.com" class="w-full bg-white/60 border border-neutral-200 focus:border-neutral-950 rounded-xl px-4 py-3 text-[12.5px] outline-none transition-all duration-300">
+            </div>
+
+            <!-- Input 3 -->
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-neutral-600">Telefone / WhatsApp</label>
+              <input type="tel" required placeholder="Ex: (11) 99999-8888" class="w-full bg-white/60 border border-neutral-200 focus:border-neutral-950 rounded-xl px-4 py-3 text-[12.5px] outline-none transition-all duration-300">
+            </div>
+
+            <!-- Select 1 -->
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-neutral-600">Especialidade Desejada</label>
+              <select class="w-full bg-white/60 border border-neutral-200 focus:border-neutral-950 rounded-xl px-4 py-3 text-[12.5px] outline-none transition-all duration-300 appearance-none cursor-pointer">
+                <option value="estetica">Estética & Lentes de Porcelana</option>
+                <option value="reabilitacao">Reabilitação & Implantes 3D</option>
+                <option value="alinhadores">Ortodontia Invisível</option>
+                <option value="preventiva">Microscopia Preventiva / Check-up</option>
+              </select>
+            </div>
+
+            <!-- Select 2 -->
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-neutral-600">Período Preferencial</label>
+              <div class="grid grid-cols-3 gap-2" id="period-selector">
+                <div class="period-option border border-neutral-950 rounded-xl py-2 text-center text-xs font-semibold cursor-pointer bg-neutral-900 text-white transition-all select-none" data-value="manha">
+                  <span>Manhã</span>
+                </div>
+                <div class="period-option border border-neutral-200 rounded-xl py-2 text-center text-xs font-semibold cursor-pointer bg-transparent text-neutral-700 transition-all select-none hover:bg-neutral-50" data-value="tarde">
+                  <span>Tarde</span>
+                </div>
+                <div class="period-option border border-neutral-200 rounded-xl py-2 text-center text-xs font-semibold cursor-pointer bg-transparent text-neutral-700 transition-all select-none hover:bg-neutral-50" data-value="noite">
+                  <span>Noite</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="space-y-2">
+              <label class="block text-[10px] font-bold uppercase tracking-widest text-neutral-600">Notas / Observações</label>
+              <textarea placeholder="Fale brevemente sobre o seu caso..." rows="3" class="w-full bg-white/60 border border-neutral-200 focus:border-neutral-950 rounded-xl px-4 py-3 text-[12.5px] outline-none resize-none transition-all duration-300"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" id="submit-booking-btn" class="w-full py-4 rounded-xl bg-neutral-900 text-white text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 transition-colors duration-300">
+              Enviar Solicitação
+            </button>
+          </form>
+        </div>
+
+        <!-- Booking Success Feedback -->
+        <div id="booking-success" class="hidden space-y-6 text-center py-12">
+          <div class="w-16 h-16 rounded-full bg-[#30d158]/10 flex items-center justify-center mx-auto text-[#30d158]">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div class="space-y-2">
+            <h4 class="font-headline text-2xl font-bold uppercase tracking-tight text-neutral-900">Solicitação Enviada</h4>
+            <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light">
+              Recebemos seu pedido de agendamento. Um de nossos especialistas em excelência entrará em contato muito em breve para confirmar seu horário.
+            </p>
+          </div>
+          <button id="close-success-btn" class="px-6 py-2.5 rounded-full border border-neutral-300 text-[10px] font-bold uppercase tracking-widest text-neutral-600 hover:border-neutral-900 hover:text-neutral-900 transition-colors duration-300">
+            Fechar Painel
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Interactive Scripts -->
+  <script src="three-art.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

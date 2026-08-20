@@ -1,0 +1,205 @@
+/* Global Settings and Font Pairing */
+:root {
+  --primary-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --headline-font: 'Syne', var(--primary-font);
+}
+
+body {
+  font-family: var(--primary-font);
+  background-color: #fafafa;
+}
+
+.font-headline {
+  font-family: var(--headline-font);
+}
+
+/* Custom Typography Fine-Tuning */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
+/* Base custom classes */
+.font-light-para {
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* Swiss Editorial Scroll Reveal Setup */
+.scroll-reveal-text {
+  opacity: 0.15;
+  transform: translateY(20px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-text.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reveal Headline Animation for Hero */
+.animate-reveal {
+  animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes revealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 400ms;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Slow spin for circular booking badge */
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Premium Refractive Glass Panels */
+.glass-panel {
+  position: relative;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.045);
+  z-index: 1;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.015),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.95),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Liquid glass filter applied behind content (does not distort text) */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -10;
+  backdrop-filter: blur(10px) saturate(110%);
+}
+
+/* Chromatic Refraction border (emulates prism light dispersion) */
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, 
+    rgba(255, 100, 100, 0.08), 
+    rgba(100, 200, 255, 0.08), 
+    rgba(100, 255, 150, 0.08), 
+    rgba(200, 100, 255, 0.08)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0.6;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover::after {
+  opacity: 1;
+}
+
+/* Sibling Dimming on Principles Grid */
+.grid-dimming-container:hover .grid-col-card {
+  opacity: 0.4;
+  transform: scale(0.97);
+  filter: blur(0.5px);
+}
+
+.grid-dimming-container .grid-col-card:hover {
+  opacity: 1;
+  transform: scale(1.01);
+  filter: none;
+}
+
+/* Subtle visual punctuation (Service list hovers) */
+.service-row {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-row:hover {
+  border-color: #0d0d0d !important;
+}
+
+/* Slide-out booking drawer interactions */
+#booking-drawer.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#booking-drawer.active #drawer-backdrop {
+  opacity: 1;
+}
+
+#booking-drawer.active #drawer-panel {
+  transform: translateX(0);
+}
+
+/* WebGL Canvases positioning */
+#hero-3d-container, #statement-3d-container, #philosophy-3d-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Period Selector styling */
+.period-option {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hide default select arrow for premium custom design styling */
+select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'%3e%3c/path%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+
+/* Custom Scrollbar for sleek editorial vibe */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
