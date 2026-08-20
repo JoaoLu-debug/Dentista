@@ -31,7 +31,7 @@ function initHeroScene() {
 
   // Camera
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.z = 6.2;
+  camera.position.z = 7.0;
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -117,46 +117,26 @@ function initHeroScene() {
   }
 
   const morphSphere = new THREE.Mesh(toothGeo, glassMaterial);
-  // Scale down the mesh to fit perfectly inside the gyroscopic rings
-  morphSphere.scale.set(0.28, 0.28, 0.28);
+  // Scale down the mesh to fit perfectly inside the outer ring
+  morphSphere.scale.set(0.23, 0.23, 0.23);
   scene.add(morphSphere);
 
-  // Nested Ring Gyroscope (Softer materials - silver & frosted glass)
+  // Outer Ring Gyroscope (Silver & polished chrome)
   const ringGroup = new THREE.Group();
   scene.add(ringGroup);
 
-  const ringGeo = new THREE.TorusGeometry(1.8, 0.015, 16, 120);
+  const ringGeo = new THREE.TorusGeometry(1.4, 0.015, 16, 120);
   
-  // Bright polished silver/chrome instead of dark grey/black
+  // Bright polished silver/chrome
   const silverMaterial = new THREE.MeshPhysicalMaterial({
     color: 0xdddddd,
     roughness: 0.08,
     metalness: 0.95,
     clearcoat: 1.0
   });
-  
-  // Frosted soft white glass
-  const frostedMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff,
-    transparent: true,
-    opacity: 0.7,
-    transmission: 0.85,
-    roughness: 0.25,
-    thickness: 0.8
-  });
 
   const ring1 = new THREE.Mesh(ringGeo, silverMaterial);
   ringGroup.add(ring1);
-
-  const ring2 = new THREE.Mesh(ringGeo, frostedMaterial);
-  ring2.scale.set(0.9, 0.9, 0.9);
-  ring2.rotation.x = Math.PI / 3;
-  ringGroup.add(ring2);
-
-  const ring3 = new THREE.Mesh(ringGeo, silverMaterial);
-  ring3.scale.set(0.8, 0.8, 0.8);
-  ring3.rotation.y = Math.PI / 3;
-  ringGroup.add(ring3);
 
   // Resize Handler
   window.addEventListener('resize', () => {
@@ -194,8 +174,6 @@ function initHeroScene() {
     morphSphere.rotation.x += 0.04 * delta;
 
     ring1.rotation.z += 0.15 * delta;
-    ring2.rotation.y -= 0.12 * delta;
-    ring3.rotation.x += 0.18 * delta;
 
     // 3. Mouse Parallax (Interactive float)
     ringGroup.rotation.x = THREE.MathUtils.lerp(ringGroup.rotation.x, mouseY * 0.3, 0.05);

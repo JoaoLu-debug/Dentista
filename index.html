@@ -79,7 +79,7 @@
         </p>
 
         <!-- CTAs & Badge Row -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-8 w-full animate-fade-in delay-300">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-8 w-full animate-fade-in delay-300 mb-12">
           <button id="cta-hero-booking" class="px-8 py-4 rounded-full bg-neutral-900 text-white text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all duration-300 shadow-sm">
             Iniciar Tratamento
           </button>
@@ -102,23 +102,21 @@
             <span class="text-[10px] font-bold tracking-widest text-neutral-500 group-hover:text-neutral-900 transition-colors uppercase">Consulte Nossos Especialistas</span>
           </div>
         </div>
+
+        <!-- Info Block (moved from right side to prevent obstruction of 3D tooth) -->
+        <div class="max-w-lg border-t border-neutral-200 pt-6 flex items-start gap-4 animate-fade-in delay-300">
+          <span class="text-xs font-bold text-neutral-900 border border-neutral-300 rounded-full px-2 py-0.5 bg-white select-none shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">★</span>
+          <p class="text-[11.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
+            Cuidamos do seu sorriso com técnicas avançadas e planejamento digital personalizado, promovendo conforto absoluto do diagnóstico à recuperação.
+          </p>
+        </div>
       </div>
 
-      <!-- Right side: WebGL Interactive 3D Canvas & Stats -->
-      <div class="lg:col-span-4 flex flex-col justify-between h-full relative min-h-[350px] lg:min-h-[500px]">
+      <!-- Right side: WebGL Interactive 3D Canvas -->
+      <div class="lg:col-span-4 flex flex-col justify-center h-full relative min-h-[350px] lg:min-h-[500px]">
         <!-- 3D Organic Canvas Slot -->
         <div id="hero-3d-container" class="absolute inset-0 z-0 pointer-events-auto cursor-grab active:cursor-grabbing">
           <!-- Canvas injected here -->
-        </div>
-
-        <!-- Float Info box at bottom -->
-        <div class="relative mt-auto z-10 glass-panel p-6 max-w-[280px] self-end hidden sm:block border border-neutral-100 rounded-2xl bg-white/70 backdrop-blur-md shadow-sm transition-all duration-500">
-          <div class="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center mb-4">
-            <span class="text-[10px] font-bold text-neutral-700">★</span>
-          </div>
-          <p class="text-[11px] text-neutral-500 leading-relaxed font-light tracking-wide">
-            Cuidamos do seu sorriso com técnicas avançadas e planejamento digital personalizado, promovendo conforto absoluto do diagnóstico à recuperação.
-          </p>
         </div>
       </div>
     </section>
