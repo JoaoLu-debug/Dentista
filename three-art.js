@@ -57,18 +57,13 @@ function initHeroScene() {
   icePointLight.position.set(3, -3, 2);
   scene.add(icePointLight);
 
-  // Porcelain/Glass Material for morphing tooth (clinical sheen, highly visible against white)
+  // Platinum Chrome Material for morphing tooth (matching the outer rings)
   const glassMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xf5f7fa,
-    transparent: true,
-    opacity: 0.95,
-    transmission: 0.3, // semi-translucent clinical glass/porcelain
-    roughness: 0.15,
-    metalness: 0.05,
-    thickness: 1.5,
-    ior: 1.48,
+    color: 0xdddddd,
+    roughness: 0.1,
+    metalness: 0.95, // High metalness for chrome look
     clearcoat: 1.0,
-    clearcoatRoughness: 0.08,
+    clearcoatRoughness: 0.05,
     side: THREE.DoubleSide
   });
 
