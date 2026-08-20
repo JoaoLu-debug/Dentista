@@ -35,7 +35,7 @@ function initHeroScene() {
 
   // Camera
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.z = 7.0;
+  camera.position.z = 5.2;
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -122,14 +122,14 @@ function initHeroScene() {
 
   const morphSphere = new THREE.Mesh(toothGeo, glassMaterial);
   // Scale down the mesh to fit perfectly inside the outer ring (approx 57% of diameter)
-  morphSphere.scale.set(0.15, 0.15, 0.15);
+  morphSphere.scale.set(0.19, 0.19, 0.19);
   scene.add(morphSphere);
 
   // Outer Ring Gyroscope (Silver & polished chrome)
   const ringGroup = new THREE.Group();
   scene.add(ringGroup);
 
-  const ringGeo = new THREE.TorusGeometry(1.4, 0.015, 16, 120);
+  const ringGeo = new THREE.TorusGeometry(1.8, 0.015, 16, 120);
   
   // Bright polished silver/chrome
   const silverMaterial = new THREE.MeshPhysicalMaterial({
@@ -185,9 +185,9 @@ function initHeroScene() {
     morphSphere.rotation.x = THREE.MathUtils.lerp(morphSphere.rotation.x, mouseY * 0.4, 0.05);
     morphSphere.rotation.y = THREE.MathUtils.lerp(morphSphere.rotation.y, mouseX * 0.4, 0.05);
     
-    // Position float offset based on mouse (with +0.4 Y offset to visually center the tooth crown/roots)
+    // Position float offset based on mouse (perfectly centered at origin)
     morphSphere.position.x = THREE.MathUtils.lerp(morphSphere.position.x, 0.0 + mouseX * 0.12, 0.05);
-    morphSphere.position.y = THREE.MathUtils.lerp(morphSphere.position.y, 0.4 + mouseY * 0.12, 0.05);
+    morphSphere.position.y = THREE.MathUtils.lerp(morphSphere.position.y, 0.0 + mouseY * 0.12, 0.05);
 
     renderer.render(scene, camera);
   }
