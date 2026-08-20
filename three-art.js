@@ -57,18 +57,18 @@ function initHeroScene() {
   icePointLight.position.set(3, -3, 2);
   scene.add(icePointLight);
 
-  // Glass Material for morphing sphere (ultra clean, pearlescent reflection)
+  // Porcelain/Glass Material for morphing tooth (clinical sheen, highly visible against white)
   const glassMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff,
+    color: 0xf5f7fa,
     transparent: true,
-    opacity: 0.92,
-    transmission: 0.95,
-    roughness: 0.08,
-    metalness: 0.02,
-    thickness: 1.8,
+    opacity: 0.95,
+    transmission: 0.3, // semi-translucent clinical glass/porcelain
+    roughness: 0.15,
+    metalness: 0.05,
+    thickness: 1.5,
     ior: 1.48,
     clearcoat: 1.0,
-    clearcoatRoughness: 0.05,
+    clearcoatRoughness: 0.08,
     side: THREE.DoubleSide
   });
 
