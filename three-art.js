@@ -67,33 +67,43 @@ function initHeroScene() {
     side: THREE.DoubleSide
   });
 
-  // Tooth 2D Silhouette Shape (Scaled up to avoid bevel intersection errors)
+  // Tooth 2D Silhouette Shape (Matching the provided molar template)
   const toothShape = new THREE.Shape();
-  toothShape.moveTo(-3.5, 7.0);
-  // Left cusp
-  toothShape.bezierCurveTo(-6.0, 8.0, -7.0, 5.0, -6.0, 2.5);
+  toothShape.moveTo(0, 3.2);
+  
+  // Top-left cusp curve
+  toothShape.bezierCurveTo(-1.5, 3.3, -2.5, 4.2, -3.5, 4.0);
   // Left side of crown
-  toothShape.bezierCurveTo(-6.5, 0.0, -5.0, -3.5, -3.5, -5.0);
-  // Left root
-  toothShape.bezierCurveTo(-3.5, -8.5, -2.5, -11.0, -1.2, -11.5);
-  toothShape.bezierCurveTo(-0.8, -11.0, -0.8, -6.0, 0, -5.0); // split between roots
-  toothShape.bezierCurveTo(0.8, -6.0, 0.8, -11.0, 1.2, -11.5);
-  // Right root
-  toothShape.bezierCurveTo(2.5, -11.0, 3.5, -8.5, 3.5, -5.0);
+  toothShape.bezierCurveTo(-4.5, 3.8, -4.8, 2.5, -4.5, 1.0);
+  // Left neck narrowing
+  toothShape.bezierCurveTo(-4.2, -0.2, -3.5, -1.0, -3.2, -1.5);
+  // Left root outer curve
+  toothShape.bezierCurveTo(-2.8, -2.5, -2.5, -4.0, -2.2, -5.2);
+  // Left root tip curve
+  toothShape.bezierCurveTo(-2.0, -5.8, -1.4, -5.8, -1.2, -5.0);
+  // Left root inner curve going up to bottom cleft
+  toothShape.bezierCurveTo(-0.9, -3.5, -0.6, -2.0, 0, -1.6); // bottom cleft apex
+  
+  // Right root inner curve going down from bottom cleft
+  toothShape.bezierCurveTo(0.6, -2.0, 0.9, -3.5, 1.2, -5.0);
+  // Right root tip curve
+  toothShape.bezierCurveTo(1.4, -5.8, 2.0, -5.8, 2.2, -5.2);
+  // Right root outer curve
+  toothShape.bezierCurveTo(2.8, -2.5, 3.5, -1.0, 3.2, -1.5);
+  // Right neck narrowing
+  toothShape.bezierCurveTo(3.5, -1.0, 4.2, -0.2, 4.5, 1.0);
   // Right side of crown
-  toothShape.bezierCurveTo(5.0, -3.5, 6.5, 0.0, 6.0, 2.5);
-  // Right cusp
-  toothShape.bezierCurveTo(7.0, 5.0, 6.0, 8.0, 3.5, 7.0);
-  // Top dip between cusps
-  toothShape.bezierCurveTo(1.8, 6.5, -1.8, 6.5, -3.5, 7.0);
+  toothShape.bezierCurveTo(4.8, 2.5, 4.5, 3.8, 3.5, 4.0);
+  // Top-right cusp curve
+  toothShape.bezierCurveTo(2.5, 4.2, 1.5, 3.3, 0, 3.2);
 
   const extrudeSettings = {
-    depth: 1.2,
+    depth: 1.0,
     bevelEnabled: true,
     bevelSegments: 8,
     steps: 2,
-    bevelSize: 0.7,
-    bevelThickness: 0.7
+    bevelSize: 0.55,
+    bevelThickness: 0.55
   };
 
   const toothGeo = new THREE.ExtrudeGeometry(toothShape, extrudeSettings);
@@ -108,7 +118,7 @@ function initHeroScene() {
 
   const morphSphere = new THREE.Mesh(toothGeo, glassMaterial);
   // Scale down the mesh to fit perfectly inside the gyroscopic rings
-  morphSphere.scale.set(0.13, 0.13, 0.13);
+  morphSphere.scale.set(0.28, 0.28, 0.28);
   scene.add(morphSphere);
 
   // Nested Ring Gyroscope (Softer materials - silver & frosted glass)
@@ -171,7 +181,7 @@ function initHeroScene() {
     const pos = toothGeo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
       const orig = originalPositions[i];
-      const wave = Math.sin(orig.x * 0.2 + timeSec) * Math.cos(orig.y * 0.2 + timeSec) * 0.45;
+      const wave = Math.sin(orig.x * 0.3 + timeSec) * Math.cos(orig.y * 0.3 + timeSec) * 0.25;
       const offset = orig.clone().normalize().multiplyScalar(wave);
       const targetPos = orig.clone().add(offset);
       pos.setXYZ(i, targetPos.x, targetPos.y, targetPos.z);
