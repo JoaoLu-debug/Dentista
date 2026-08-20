@@ -13,7 +13,7 @@
   <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body class="bg-[#fafafa] text-[#0d0d0d] font-sans antialiased overflow-x-hidden relative selection:bg-neutral-900 selection:text-white">
 
@@ -65,13 +65,8 @@
     <section class="min-h-[calc(100vh-80px)] py-12 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-neutral-100 relative">
       <!-- Left side: Editorial Typography -->
       <div class="lg:col-span-8 flex flex-col items-start z-10">
-        <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-neutral-400 mb-6 flex items-center gap-2 animate-fade-in">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#30d158] inline-block"></span> 
-          CLÍNICA ODONTOLÓGICA DE ALTO PADRÃO
-        </span>
-        
         <h1 class="text-5xl md:text-7xl xl:text-8xl font-extrabold uppercase tracking-tight text-neutral-900 leading-[0.95] mb-8 animate-reveal">
-          SAÚDE, ESTÉTICA<br>E BEM-ESTAR PARA<br><span class="text-neutral-400">O SEU SORRISO.</span>
+          SAÚDE, ESTÉTICA<br>E BEM-ESTAR PARA<br><span class="text-[#0047ff]">O SEU SORRISO.</span>
         </h1>
 
         <p class="max-w-lg text-[13px] md:text-sm text-neutral-500 leading-relaxed font-light mb-10 tracking-wide animate-fade-in delay-200">
@@ -123,75 +118,107 @@
       </div>
     </section>
 
+    <!-- Section 2: Centralized Editorial Statement (Exactly as in the attachment) -->
+    <section class="py-32 border-b border-neutral-100 relative overflow-hidden bg-white">
+      <!-- Floating Blue 3D-Like SVG Elements -->
+      <!-- Top Left: Clinical Mirror -->
+      <div class="absolute left-4 md:left-20 top-12 md:top-16 w-14 md:w-24 h-14 md:h-24 floating-icon z-10 opacity-90">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <defs>
+            <linearGradient id="blueMirrorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6" />
+              <stop offset="30%" stop-color="#0047ff" />
+              <stop offset="100%" stop-color="#001a80" />
+            </linearGradient>
+            <filter id="mirrorShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#0047ff" flood-opacity="0.15" />
+            </filter>
+          </defs>
+          <g filter="url(#mirrorShadow)" transform="rotate(-30 50 50)">
+            <rect x="47" y="45" width="6" height="50" rx="3" fill="url(#blueMirrorGrad)" />
+            <path d="M 47,45 Q 50,38 50,36" stroke="url(#blueMirrorGrad)" stroke-width="6" stroke-linecap="round" />
+            <circle cx="50" cy="26" r="14" fill="url(#blueMirrorGrad)" />
+            <circle cx="50" cy="26" r="10" fill="#0035cc" opacity="0.8" />
+            <path d="M 44,22 A 10,10 0 0,1 56,22" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
 
-    <!-- Section 2: Three Principles -->
-    <section class="py-24 border-b border-neutral-100">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 grid-dimming-container">
+      <!-- Top Right: Floss Pick -->
+      <div class="absolute right-4 md:right-20 top-12 md:top-16 w-14 md:w-24 h-14 md:h-24 floating-icon-delayed z-10 opacity-90">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <defs>
+            <linearGradient id="blueFlosserGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6" />
+              <stop offset="30%" stop-color="#0047ff" />
+              <stop offset="100%" stop-color="#001a80" />
+            </linearGradient>
+            <filter id="flosserShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#0047ff" flood-opacity="0.15" />
+            </filter>
+          </defs>
+          <g filter="url(#flosserShadow)" transform="rotate(35 50 50)">
+            <path d="M 47,85 C 47,65 52,55 55,45 C 57,40 56,32 50,25 C 45,20 40,20 37,20 M 55,45 C 59,38 65,28 72,25 C 77,22 81,23 81,23" stroke="url(#blueFlosserGrad)" stroke-width="6" stroke-linecap="round" fill="none" />
+            <line x1="39" y1="20" x2="79" y2="23" stroke="#e0f2fe" stroke-width="1.5" stroke-linecap="round" opacity="0.9" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Bottom Left: 3D Molar Tooth -->
+      <div class="absolute left-4 md:left-24 bottom-12 md:bottom-16 w-14 md:w-24 h-14 md:h-24 floating-icon-delayed z-10 opacity-90">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <defs>
+            <linearGradient id="blueToothGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6" />
+              <stop offset="30%" stop-color="#0047ff" />
+              <stop offset="100%" stop-color="#001a80" />
+            </linearGradient>
+            <filter id="toothShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="-2" dy="6" stdDeviation="4" flood-color="#0047ff" flood-opacity="0.15" />
+            </filter>
+          </defs>
+          <g filter="url(#toothShadow)" transform="rotate(-15 50 50)">
+            <path d="M 32,32 C 23,32 20,22 22,12 C 23,4 37,4 47,9 C 50,11 50,11 53,9 C 63,4 77,4 78,12 C 80,22 77,32 68,32 C 65,32 63,28 50,28 C 37,28 35,32 32,32 Z" fill="url(#blueToothGrad)" />
+            <path d="M 32,32 C 28,32 28,45 31,58 C 34,70 38,78 41,78 C 43,78 44,70 47,52 C 50,52 53,52 56,52 C 59,70 60,78 62,78 C 65,78 69,70 72,58 C 75,45 75,32 68,32" fill="url(#blueToothGrad)" />
+            <path d="M 28,14 C 28,18 29,24 32,28" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.4" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Bottom Right: Squeezed Toothpaste Tube -->
+      <div class="absolute right-4 md:right-24 bottom-12 md:bottom-16 w-14 md:w-24 h-14 md:h-24 floating-icon z-10 opacity-90">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <defs>
+            <linearGradient id="blueTubeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6" />
+              <stop offset="30%" stop-color="#0047ff" />
+              <stop offset="100%" stop-color="#001a80" />
+            </linearGradient>
+            <filter id="tubeShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#0047ff" flood-opacity="0.15" />
+            </filter>
+          </defs>
+          <g filter="url(#tubeShadow)" transform="rotate(35 50 50)">
+            <path d="M 44,14 L 56,14 L 55,20 L 45,20 Z" fill="#001a80" />
+            <rect x="47" y="20" width="6" height="4" fill="#002db3" />
+            <path d="M 47,24 L 53,24 L 62,75 L 38,75 Z" fill="url(#blueTubeGrad)" />
+            <path d="M 38,75 L 62,75 L 60,82 L 40,82 Z" fill="#001a80" />
+            <path d="M 44,26 L 40,71" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.35" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Centered Text and Button -->
+      <div class="max-w-[900px] mx-auto px-6 relative flex flex-col items-center text-center z-20">
+        <h2 class="text-xl md:text-3xl lg:text-4xl font-extrabold uppercase tracking-tight text-neutral-900 leading-[1.3] mb-12 select-none">
+          O SORRISO É O REFLEXO DA SUA SAÚDE E CONFIANÇA. NOSSO COMPROMISSO É PROPORCIONAR PROCEDIMENTOS COM O MÁXIMO CONFORTO, GARANTINDO SEGUROS E NATURAIS.
+        </h2>
         
-        <!-- Column 1 -->
-        <div class="flex flex-col items-start pr-0 md:pr-8 border-t border-neutral-200 pt-8 transition-all duration-500 hover:opacity-100 hover:scale-[1.01] grid-col-card">
-          <span class="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest border border-neutral-300 rounded-full text-neutral-400 mb-6 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">01</span>
-          <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-900 mb-4">ATENDIMENTO EXCLUSIVO</h3>
-          <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
-            Cada paciente conta com um plano clínico singular desenhado sob medida, unindo exames de microscopia óptica e escaneamento 3D para intervenções de exatidão absoluta.
-          </p>
-        </div>
-
-        <!-- Column 2 -->
-        <div class="flex flex-col items-start px-0 md:px-8 border-t border-neutral-200 pt-8 transition-all duration-500 hover:opacity-100 hover:scale-[1.01] grid-col-card">
-          <span class="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest border border-neutral-300 rounded-full text-neutral-400 mb-6 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">02</span>
-          <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-900 mb-4">CONFORTO E SEGURANÇA</h3>
-          <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
-            Utilizamos materiais odontológicos biomiméticos da mais alta biocompatibilidade, integrando técnicas modernas que garantem tratamentos confortáveis e livres de dor.
-          </p>
-        </div>
-
-        <!-- Column 3 -->
-        <div class="flex flex-col items-start pl-0 md:pl-8 border-t border-neutral-200 pt-8 transition-all duration-500 hover:opacity-100 hover:scale-[1.01] grid-col-card">
-          <span class="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest border border-neutral-300 rounded-full text-neutral-400 mb-6 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">03</span>
-          <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-neutral-900 mb-4">DURABILIDADE CLINICAMENTE COMPROVADA</h3>
-          <p class="text-[12.5px] text-neutral-500 leading-relaxed font-light tracking-wide">
-            Focamos em procedimentos com alta estabilidade estrutural e acompanhamento preventivo contínuo, blindando o seu sorriso natural por muito mais tempo.
-          </p>
-        </div>
-
+        <button onclick="document.getElementById('open-drawer-btn').click()" class="px-10 py-4.5 rounded-full bg-[#0d0d0d] text-white text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all duration-300 shadow-md">
+          Agendar Consulta
+        </button>
       </div>
     </section>
-
-
-    <!-- Section 3: Editorial Statement -->
-    <section class="py-24 border-b border-neutral-100 relative">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <!-- Text Statement -->
-        <div class="lg:col-span-8 z-10">
-          <h2 class="text-3xl md:text-5xl xl:text-6xl font-extrabold uppercase tracking-tight text-neutral-900 leading-[1.05] mb-12 scroll-reveal-text">
-            O SORRISO É O REFLEXO DA SUA SAÚDE E CONFIANÇA. NOSSO COMPROMISSO É PROPORCIONAR PROCEDIMENTOS COM O MÁXIMO CONFORTO, GARANTINDO RESULTADOS SEGUROS E NATURAIS.
-          </h2>
-        </div>
-
-        <!-- Layered Blades 3D Canvas -->
-        <div class="lg:col-span-4 h-[350px] lg:h-[450px] relative w-full pointer-events-auto">
-          <div id="statement-3d-container" class="absolute inset-0 z-0 cursor-grab active:cursor-grabbing">
-            <!-- Three.js Canvas injected here -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Additional Sub-paragraphs underneath -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 border-t border-neutral-100 pt-12">
-        <div>
-          <p class="text-[13px] text-neutral-500 leading-relaxed font-light tracking-wide font-light-para">
-            Acreditamos que a odontologia de alto padrão deve ser uma experiência inteiramente acolhedora. Por isso, aliamos tecnologia digital de ponta a técnicas anestésicas modernas, eliminando a ansiedade e o desconforto físico normalmente associados aos tratamentos clínicos.
-          </p>
-        </div>
-        <div>
-          <p class="text-[13px] text-neutral-500 leading-relaxed font-light tracking-wide font-light-para">
-            Desde lentes de contato de porcelana a reabilitações mais complexas, cada detalhe é planejado sob microscopia clínica. Isso garante uma exatidão impecável de encaixe, menor necessidade de desgaste do dente e resultados estéticos com aspecto saudável e natural.
-          </p>
-        </div>
-      </div>
-    </section>
-
 
     <!-- Section 4: Health Dashboard & Portrait -->
     <section id="dashboard" class="py-24 border-b border-neutral-100">
@@ -599,7 +626,7 @@
   </div>
 
   <!-- Interactive Scripts -->
-  <script src="three-art.js?v=2"></script>
-  <script src="app.js"></script>
+  <script src="three-art.js?v=3"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
